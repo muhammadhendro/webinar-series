@@ -77,7 +77,7 @@ function App() {
       {/* Top Section: Hero / Info with Background Image */}
       {/* Reduced Height to avoid double scroll: 500px on desktop */}
       <div
-        className="w-full relative min-h-[350px] lg:min-h-[500px] flex items-center bg-cover bg-[position:100%_center] bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-[350px] lg:min-h-[500px] flex items-center bg-contain bg-right bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}
