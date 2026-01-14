@@ -75,9 +75,9 @@ function App() {
     <div className="w-full bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Fixed Height optimized for Iframe: 750px on desktop to ensure visibility without being too tall */}
+      {/* Fixed Height optimized for Iframe: 580px to match reference site */}
       <div
-        className="w-full relative min-h-[500px] lg:min-h-[750px] flex items-center bg-cover bg-center bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-[350px] lg:min-h-[580px] flex items-center bg-cover bg-center bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}
