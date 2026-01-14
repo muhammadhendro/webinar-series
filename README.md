@@ -51,6 +51,12 @@ Open `http://localhost:5173` to see the form.
 ></iframe>
 ```
 
+### 3. Add Custom Image
+1.  Name your image file: `speaker_illustration.png`
+2.  Place it in the `public` folder of this project.
+    - Path: `webinar-registration/public/speaker_illustration.png`
+3.  The image will automatically appear on the top right of the page.
+
 ## 🎨 Features
 - **Dark Mode**: Matches Xynexis aesthetic.
 - **Responsive**: Works on mobile and desktop.

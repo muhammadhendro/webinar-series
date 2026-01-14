@@ -71,102 +71,114 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-xynexis-dark flex flex-col items-center">
-      <div className="max-w-3xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div className="min-h-screen bg-xynexis-dark flex flex-col items-center pb-20">
 
-        {/* Left Side: Hero / Info */}
-        <div className="hidden md:block">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            <span className="text-white">Become a </span>
-            <span className="text-xynexis-green">Speaker</span>
-          </h1>
-          <p className="text-gray-400 text-lg mb-8">
-            Join our webinar series and share your expertise in Post-Quantum Cryptography and Cyber Security.
-          </p>
-          <div className="flex items-center space-x-4 text-gray-400">
-            <div className="w-12 h-1 bg-xynexis-green rounded"></div>
-            <span>Xynexis Webinar Series</span>
-          </div>
-        </div>
+      {/* Top Section: Hero / Info with Background Image */}
+      <div
+        className="w-full relative min-h-[500px] flex items-center mb-12 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/speaker_illustration.png')" }}
+      >
+        {/* Dark Overlay for text readability (Gradient from Left to transparent Right) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-xynexis-dark via-xynexis-dark/80 to-transparent"></div>
 
-        {/* Right Side: Form */}
-        <div className="bg-[#2b303b] p-8 rounded-xl shadow-2xl w-full">
-          <h2 className="text-2xl font-semibold mb-6 border-b border-gray-600 pb-2">Registration Form</h2>
-
-          {error && (
-            <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded mb-4 text-sm">
-              {error}
+        {/* Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2">
+          {/* Left: Text */}
+          <div className="py-12">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <span className="text-white">Become a </span>
+              <span className="text-xynexis-green">Speaker</span>
+            </h1>
+            <p className="text-gray-300 text-lg mb-8 max-w-xl">
+              Join our webinar series and share your expertise in Post-Quantum Cryptography and Cyber Security.
+            </p>
+            <div className="flex items-center space-x-4 text-gray-300">
+              <div className="w-12 h-1 bg-xynexis-green rounded"></div>
+              <span>Xynexis Webinar Series</span>
             </div>
-          )}
-
-          <form onSubmit={handleSubmit}>
-            <Input
-              label="Full Name"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              placeholder="Enter your full name"
-              required
-            />
-
-            <Input
-              label="Company Name"
-              name="companyName"
-              value={formData.companyName}
-              onChange={handleChange}
-              placeholder="Your organization"
-              required
-            />
-
-            <Input
-              label="Position"
-              name="position"
-              value={formData.position}
-              onChange={handleChange}
-              placeholder="e.g. Senior Security Analyst"
-              required
-            />
-
-            <Input
-              label="Email Address"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="name@company.com"
-              required
-            />
-
-            <Input
-              label="Phone Number (Optional)"
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="+62..."
-            />
-
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full mt-4 bg-xynexis-green text-white font-bold py-3 px-4 rounded transition-all transform hover:scale-[1.02] hover:bg-xynexis-green-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-xynexis-green focus:ring-offset-[#2b303b] ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
-            >
-              {loading ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Processing...
-                </span>
-              ) : 'Submit Registration'}
-            </button>
-          </form>
+          </div>
+          {/* Right: Empty to let image show */}
+          <div></div>
         </div>
       </div>
 
+      {/* Bottom Section: Form */}
+      <div className="max-w-2xl w-full bg-[#2b303b] p-8 md:p-12 rounded-xl shadow-2xl z-10 -mt-10 mx-4 border border-gray-700/50">
+        <h2 className="text-3xl font-semibold mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
+
+        {error && (
+          <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded mb-6 text-sm">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <Input
+            label="Full Name"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            placeholder="Enter your full name"
+            required
+          />
+
+          <Input
+            label="Company Name"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            placeholder="Your organization"
+            required
+          />
+
+          <Input
+            label="Position"
+            name="position"
+            value={formData.position}
+            onChange={handleChange}
+            placeholder="e.g. Senior Security Analyst"
+            required
+          />
+
+          <Input
+            label="Email Address"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="name@company.com"
+            required
+          />
+
+          <Input
+            label="Phone Number (Optional)"
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+62..."
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full mt-6 bg-xynexis-green text-white font-bold py-4 px-6 rounded-lg text-lg transition-all transform hover:scale-[1.01] hover:bg-xynexis-green-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-xynexis-green focus:ring-offset-[#2b303b] ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
+          >
+            {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </span>
+            ) : 'Submit Registration'}
+          </button>
+        </form>
+      </div>
+
       {/* Footer */}
-      <div className="mt-12 text-center text-gray-500 text-sm">
+      <div className="mt-16 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} Xynexis. All rights reserved.
       </div>
     </div>
