@@ -182,9 +182,9 @@ function App() {
     <div className="w-full min-h-screen bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Adjusted Height: min-h-[85vh] allows form to peek through on bottom, encouraging scroll */}
+      {/* Adjusted Height: min-h clamped with max-h-[800px] to prevent it being huge in tall iframes */}
       <div
-        className="w-full relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-[500px] lg:min-h-[700px] max-h-[800px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}
