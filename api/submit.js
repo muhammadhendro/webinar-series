@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase Client (Server-Side)
-// Vercel automatically loads environment variables
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
 
@@ -11,12 +10,24 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
-    const { full_name, company_name, email, phone_number, position } = req.body;
+    const { full_name, company_name, email, phone_number, position, token } = req.body;
 
-    // Basic Validation
-    if (!email || !full_name || !company_name || !position) {
-        return res.status(400).json({ message: 'Missing required fields' });
+    // Basic Existence Validation
+    if (!token || !email || !full_name || !company_name || !position) {
+        return res.status(400).json({ message: 'Missing required fields or security token' });
     }
+
+    // Strict Input Validation (Regex Patterns)
+    const nameRegex = /^[a-zA-Z\s\.\-\']+$/;
+    const companyPosRegex = /^[a-zA-Z0-9\s\.\-\,\&\'\(\)]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[+]?[\d\s-]{10,15}$/;
+
+    if (!nameRegex.test(full_name)) return res.status(400).json({ message: 'Invalid characters in Full Name' });
+    if (!companyPosRegex.test(company_name)) return res.status(400).json({ message: 'Invalid characters in Company Name' });
+    if (!companyPosRegex.test(position)) return res.status(400).json({ message: 'Invalid characters in Position' });
+    if (!emailRegex.test(email)) return res.status(400).json({ message: 'Invalid Email format' });
+    if (phone_number && !phoneRegex.test(phone_number)) return res.status(400).json({ message: 'Invalid Phone Number format' });
 
     // Initialize Client
     if (!supabaseUrl || !supabaseKey) {
@@ -25,21 +36,30 @@ export default async function handler(req, res) {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     try {
-        // 1. Check for Duplicate Email (Securely on Server)
-        // Note: We already added the UNIQUE constraint to the DB, so we can rely on that error,
-        // OR we can explicit SELECT here. Since we are on server, SELECT is safe (if RLS allows service role or we use anon).
-        // Using simple Insert + Error catching is efficient.
+        // 1. Verify and Consume Token (Anti-Brute Force / Anti-Replay)
+        // We try to DELETE the token. If it exists, it's valid and now consumed.
+        // If it doesn't exist (already deleted or invalid), the operation returns null/empty.
+        const { data: tokenData, error: tokenError } = await supabase
+            .from('submission_tokens')
+            .delete()
+            .eq('token', token)
+            .select()
+            .single();
 
-        // 2. Insert Data
+        if (tokenError || !tokenData) {
+            return res.status(403).json({ message: 'Invalid or expired security token. Please refresh the page.' });
+        }
+
+        // 2. Insert Data (Sanitized by Parameterized Query)
         const { error } = await supabase
             .from('speakers')
             .insert([
                 {
-                    full_name,
-                    company_name,
-                    email,
-                    phone_number,
-                    position
+                    full_name: full_name.trim(),
+                    company_name: company_name.trim(),
+                    email: email.trim().toLowerCase(),
+                    phone_number: phone_number ? phone_number.trim() : null,
+                    position: position.trim()
                 }
             ]);
 
