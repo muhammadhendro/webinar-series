@@ -41,17 +41,20 @@ function App() {
 
   const validateForm = () => {
     const newErrors = {};
+
+    // Strict Input Patterns (Whitelisting safe characters)
+    const nameRegex = /^[a-zA-Z\s\.\-\']+$/; // Letters, spaces, dots, dashes, apostrophes
+    const companyPosRegex = /^[a-zA-Z0-9\s\.\-\,\&\'\(\)]+$/; // Alphanumeric + safe punctuation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[+]?[\d\s-]{10,15}$/; // Basic international phone format
-    const scriptRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gm; // Basic XSS check
+    const phoneRegex = /^[+]?[\d\s-]{10,15}$/;
 
     // Full Name Validation
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'Full Name is required';
     } else if (formData.fullName.length > 100) {
       newErrors.fullName = 'Name is too long (max 100 chars)';
-    } else if (scriptRegex.test(formData.fullName)) {
-      newErrors.fullName = 'Invalid characters detected';
+    } else if (!nameRegex.test(formData.fullName)) {
+      newErrors.fullName = 'Name contains invalid characters (Letters only)';
     }
 
     // Company Validation
@@ -59,11 +62,15 @@ function App() {
       newErrors.companyName = 'Company Name is required';
     } else if (formData.companyName.length > 100) {
       newErrors.companyName = 'Company name is too long';
+    } else if (!companyPosRegex.test(formData.companyName)) {
+      newErrors.companyName = 'Company name contains invalid characters';
     }
 
     // Position Validation
     if (!formData.position.trim()) {
       newErrors.position = 'Position is required';
+    } else if (!companyPosRegex.test(formData.position)) {
+      newErrors.position = 'Position contains invalid characters';
     }
 
     // Email Validation
@@ -73,7 +80,7 @@ function App() {
       newErrors.email = 'Invalid email format';
     }
 
-    // Phone Validation (Optional but strictly validated if present)
+    // Phone Validation
     if (formData.phone && !phoneRegex.test(formData.phone)) {
       newErrors.phone = 'Invalid phone number format (e.g., +62812345678)';
     }
