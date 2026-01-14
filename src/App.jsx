@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import Input from './components/Input';
 
+const SuccessModal = ({ onConfirm }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+    <div className="bg-[#2b303b] p-8 rounded-2xl shadow-2xl text-center border-t-4 border-xynexis-green max-w-sm w-full animate-scale-up">
+      <div className="w-16 h-16 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg className="w-8 h-8 text-xynexis-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h3 className="text-2xl font-bold text-white mb-2">Success!</h3>
+      <p className="text-gray-300 mb-6">Your registration has been submitted.</p>
+      <button
+        onClick={onConfirm}
+        className="w-full bg-xynexis-green text-white font-bold py-3 rounded-lg hover:bg-emerald-600 transition-all"
+      >
+        OK
+      </button>
+    </div>
+  </div>
+);
+
 function App() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -155,27 +175,7 @@ function App() {
     }
   };
 
-  if (submitted) {
-    return (
-      <div className="flex items-center justify-center p-8 bg-xynexis-dark min-h-screen">
-        <div className="max-w-md w-full bg-[#2b303b] p-8 rounded-lg shadow-xl text-center border-t-4 border-xynexis-green">
-          <svg className="w-16 h-16 text-xynexis-green mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-          <h2 className="text-2xl font-bold mb-2">Registration Successful!</h2>
-          <p className="text-gray-300">Thank you for registering as a speaker. We will contact you shortly.</p>
-          <button
-            onClick={() => {
-              window.location.reload(); // Refresh to get new token for new registration
-            }}
-            className="mt-6 text-xynexis-green hover:text-white font-medium underline"
-          >
-            Register another person
-          </button>
-        </div>
-      </div>
-    );
-  }
+
 
   // w-full and overflow-x-hidden to prevent horizontal scrolling
   return (
@@ -306,6 +306,9 @@ function App() {
       </div>
 
       {/* Spacing bottom removed */}
+
+      {/* Success Modal Popup */}
+      {submitted && <SuccessModal onConfirm={() => window.location.reload()} />}
     </div>
   );
 }
