@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import * as XLSX from 'xlsx';
 
 function Dashboard() {
     const [speakers, setSpeakers] = useState([]);
@@ -33,6 +34,20 @@ function Dashboard() {
         navigate('/admin');
     };
 
+    const handleExport = () => {
+        const ws = XLSX.utils.json_to_sheet(speakers.map(s => ({
+            'Date Registered': formatDate(s.created_at),
+            'Full Name': s.full_name,
+            'Company': s.company_name,
+            'Position': s.position,
+            'Email': s.email,
+            'Phone': s.phone_number || '-'
+        })));
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Registrants");
+        XLSX.writeFile(wb, "Webinar_Speakers_List.xlsx");
+    };
+
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString('id-ID', {
             day: 'numeric', month: 'long', year: 'numeric',
@@ -49,12 +64,23 @@ function Dashboard() {
                         <h1 className="text-3xl font-bold text-xynexis-green">Dashboard</h1>
                         <p className="text-gray-400 mt-1">Total Registrants: {speakers.length}</p>
                     </div>
-                    <button
-                        onClick={handleLogout}
-                        className="px-4 py-2 bg-red-600/20 text-red-400 border border-red-600/50 rounded hover:bg-red-600/40 transition-colors"
-                    >
-                        Logout
-                    </button>
+                    <div className="flex gap-3">
+                        <button
+                            onClick={handleExport}
+                            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center gap-2"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Export Excel
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            className="px-4 py-2 bg-red-600/20 text-red-400 border border-red-600/50 rounded hover:bg-red-600/40 transition-colors"
+                        >
+                            Logout
+                        </button>
+                    </div>
                 </div>
 
                 {/* Error State */}
