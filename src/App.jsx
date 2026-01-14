@@ -182,9 +182,9 @@ function App() {
     <div className="w-full min-h-screen bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Full Screen Height (min-h-screen) so it covers initial view. Scrolls away to reveal dark form. */}
+      {/* Adjusted Height: min-h-[85vh] allows form to peek through on bottom, encouraging scroll */}
       <div
-        className="w-full relative min-h-screen flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}
