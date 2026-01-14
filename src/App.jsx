@@ -182,13 +182,20 @@ function App() {
     <div className="w-full min-h-screen bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Adjusted Height: min-h clamped with max-h-[800px] to prevent it being huge in tall iframes */}
+      {/* Fixed Pixel Height (900px) creates strong Full Screen feel without breaking in tall iframes */}
       <div
-        className="w-full relative min-h-[500px] lg:min-h-[700px] max-h-[800px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-[600px] lg:min-h-[900px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-xynexis-dark via-xynexis-dark/80 to-transparent bg-opacity-90"></div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20 hidden md:block">
+          <svg className="w-10 h-10 text-xynexis-green opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
 
         {/* Content Container */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2">
