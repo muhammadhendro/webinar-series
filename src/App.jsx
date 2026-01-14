@@ -144,129 +144,130 @@ function App() {
   }
 
   // w-full and overflow-x-hidden to prevent horizontal scrolling
-  <div className="w-full min-h-screen bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
+  return (
+    <div className="w-full min-h-screen bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
-    {/* Top Section: Hero / Info with Background Image */}
-    {/* Reduced Height to avoid double scroll: 500px on desktop */}
-    <div
-      className="w-full relative min-h-[350px] lg:min-h-[600px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
-      style={{ backgroundImage: "url('/speaker_illustration.png')" }}
-    >
-      {/* Dark Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-xynexis-dark via-xynexis-dark/80 to-transparent bg-opacity-90"></div>
+      {/* Top Section: Hero / Info with Background Image */}
+      {/* Reduced Height to avoid double scroll: 500px on desktop */}
+      <div
+        className="w-full relative min-h-[350px] lg:min-h-[600px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
+        style={{ backgroundImage: "url('/speaker_illustration.png')" }}
+      >
+        {/* Dark Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-xynexis-dark via-xynexis-dark/80 to-transparent bg-opacity-90"></div>
 
-      {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2">
-        {/* Left: Text */}
-        <div className="py-8 md:py-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
-            <span className="text-white">Become a </span>
-            <span className="text-xynexis-green">Speaker</span>
-          </h1>
-          <p className="text-gray-300 text-base sm:text-lg mb-6 md:mb-8 max-w-xl">
-            Join our webinar series and share your expertise in Post-Quantum Cryptography and Cyber Security.
-          </p>
-          <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base">
-            <div className="w-8 md:w-12 h-1 bg-xynexis-green rounded"></div>
-            <span>Xynexis Webinar Series</span>
+        {/* Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2">
+          {/* Left: Text */}
+          <div className="py-8 md:py-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+              <span className="text-white">Become a </span>
+              <span className="text-xynexis-green">Speaker</span>
+            </h1>
+            <p className="text-gray-300 text-base sm:text-lg mb-6 md:mb-8 max-w-xl">
+              Join our webinar series and share your expertise in Post-Quantum Cryptography and Cyber Security.
+            </p>
+            <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base">
+              <div className="w-8 md:w-12 h-1 bg-xynexis-green rounded"></div>
+              <span>Xynexis Webinar Series</span>
+            </div>
           </div>
+          {/* Right: Empty to let image show */}
+          <div></div>
         </div>
-        {/* Right: Empty to let image show */}
-        <div></div>
       </div>
-    </div>
 
-    {/* Bottom Section: Form */}
-    {/* Responsive padding and margin. Removed border and shadow to fix 'white line' artifact. */}
-    <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl z-10 mt-6 md:mt-8 mx-4 transform transition-all">
-      <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
+      {/* Bottom Section: Form */}
+      {/* Responsive padding and margin. Removed border and shadow to fix 'white line' artifact. */}
+      <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl z-10 mt-6 md:mt-8 mx-4 transform transition-all">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
 
-      {error && (
-        <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded mb-6 text-sm">
-          {error}
-        </div>
-      )}
+        {error && (
+          <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded mb-6 text-sm">
+            {error}
+          </div>
+        )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <Input
-          label="Full Name"
-          name="fullName"
-          value={formData.fullName}
-          onChange={handleChange}
-          placeholder="Enter your full name"
-          required
-        />
-
-        <Input
-          label="Company Name"
-          name="companyName"
-          value={formData.companyName}
-          onChange={handleChange}
-          placeholder="Your organization"
-          required
-        />
-
-        <Input
-          label="Position"
-          name="position"
-          value={formData.position}
-          onChange={handleChange}
-          placeholder="e.g. Senior Security Analyst"
-          required
-        />
-
-        <Input
-          label="Email Address"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="name@company.com"
-          required
-        />
-
-        <Input
-          label="Phone Number (Optional)"
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="+62..."
-        />
-
-        {/* Honeypot Field (Hidden from users, visible to bots) */}
-        <div className="hidden">
-          <label>Website</label>
-          <input
-            type="text"
-            name="website"
-            value={formData.website}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <Input
+            label="Full Name"
+            name="fullName"
+            value={formData.fullName}
             onChange={handleChange}
-            tabIndex="-1"
-            autoComplete="off"
+            placeholder="Enter your full name"
+            required
           />
-        </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full mt-6 bg-xynexis-green text-white font-bold py-3 md:py-4 px-6 rounded-lg text-lg transition-all transform hover:scale-[1.01] hover:bg-xynexis-green-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-xynexis-green focus:ring-offset-[#2b303b] ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
-        >
-          {loading ? (
-            <span className="flex items-center justify-center">
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Processing...
-            </span>
-          ) : 'Submit Registration'}
-        </button>
-      </form>
+          <Input
+            label="Company Name"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            placeholder="Your organization"
+            required
+          />
+
+          <Input
+            label="Position"
+            name="position"
+            value={formData.position}
+            onChange={handleChange}
+            placeholder="e.g. Senior Security Analyst"
+            required
+          />
+
+          <Input
+            label="Email Address"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="name@company.com"
+            required
+          />
+
+          <Input
+            label="Phone Number (Optional)"
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+62..."
+          />
+
+          {/* Honeypot Field (Hidden from users, visible to bots) */}
+          <div className="hidden">
+            <label>Website</label>
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              tabIndex="-1"
+              autoComplete="off"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full mt-6 bg-xynexis-green text-white font-bold py-3 md:py-4 px-6 rounded-lg text-lg transition-all transform hover:scale-[1.01] hover:bg-xynexis-green-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-xynexis-green focus:ring-offset-[#2b303b] ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
+          >
+            {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </span>
+            ) : 'Submit Registration'}
+          </button>
+        </form>
+      </div>
+
+      {/* Spacing bottom removed */}
     </div>
-
-    {/* Spacing bottom removed */}
-  </div>
   );
 }
 
