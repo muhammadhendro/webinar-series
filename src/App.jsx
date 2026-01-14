@@ -8,7 +8,8 @@ function App() {
     companyName: '',
     email: '',
     phone: '',
-    position: ''
+    position: '',
+    website: '' // Honeypot field
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -22,25 +23,97 @@ function App() {
     }));
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[+]?[\d\s-]{10,15}$/; // Basic international phone format
+    const scriptRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gm; // Basic XSS check
+
+    // Full Name Validation
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'Full Name is required';
+    } else if (formData.fullName.length > 100) {
+      newErrors.fullName = 'Name is too long (max 100 chars)';
+    } else if (scriptRegex.test(formData.fullName)) {
+      newErrors.fullName = 'Invalid characters detected';
+    }
+
+    // Company Validation
+    if (!formData.companyName.trim()) {
+      newErrors.companyName = 'Company Name is required';
+    } else if (formData.companyName.length > 100) {
+      newErrors.companyName = 'Company name is too long';
+    }
+
+    // Position Validation
+    if (!formData.position.trim()) {
+      newErrors.position = 'Position is required';
+    }
+
+    // Email Validation
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Invalid email format';
+    }
+
+    // Phone Validation (Optional but strictly validated if present)
+    if (formData.phone && !phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'Invalid phone number format (e.g., +62812345678)';
+    }
+
+    return newErrors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Security: Validate before processing
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      // Set the first error as the main error message or handle field-specific errors
+      setError(Object.values(validationErrors)[0]);
+      return;
+    }
+
+    // Honeypot Field (Anti-Bot)
+    if (formData.website) {
+      // Silently fail if bot fills this hidden field
+      return;
+    }
+
+    // Rate Limiting (Simple Client-Side)
+    const lastSubmission = localStorage.getItem('last_submission');
+    if (lastSubmission) {
+      const timeSince = Date.now() - parseInt(lastSubmission, 10);
+      const COOLDOWN = 60000; // 60 seconds
+      if (timeSince < COOLDOWN) {
+        setError(`Please wait ${Math.ceil((COOLDOWN - timeSince) / 1000)} seconds before submitting again.`);
+        return;
+      }
+    }
+
     setLoading(true);
     setError(null);
 
     try {
+      // Security: Sanitize inputs before sending to DB (trimming)
+      const sanitizedData = {
+        full_name: formData.fullName.trim(),
+        company_name: formData.companyName.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone_number: formData.phone ? formData.phone.trim() : null,
+        position: formData.position.trim()
+      };
+
       const { error } = await supabase
         .from('speakers')
-        .insert([
-          {
-            full_name: formData.fullName,
-            company_name: formData.companyName,
-            email: formData.email,
-            phone_number: formData.phone,
-            position: formData.position
-          }
-        ]);
+        .insert([sanitizedData]);
 
       if (error) throw error;
+
+      // Set Rate Limit Timestamp
+      localStorage.setItem('last_submission', Date.now().toString());
 
       setSubmitted(true);
     } catch (err) {
@@ -106,7 +179,7 @@ function App() {
 
       {/* Bottom Section: Form */}
       {/* Responsive padding and margin */}
-      <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl shadow-2xl z-10 mt-6 md:mt-8 mx-4 border border-gray-700/50 transform transition-all">
+      <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl shadow-2xl z-10 mt-6 md:mt-8 mx-4 transform transition-all">
         <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
 
         {error && (
@@ -161,6 +234,19 @@ function App() {
             onChange={handleChange}
             placeholder="+62..."
           />
+
+          {/* Honeypot Field (Hidden from users, visible to bots) */}
+          <div className="hidden">
+            <label>Website</label>
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              tabIndex="-1"
+              autoComplete="off"
+            />
+          </div>
 
           <button
             type="submit"
