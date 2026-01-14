@@ -106,7 +106,7 @@ function App() {
 
       {/* Bottom Section: Form */}
       {/* Responsive padding and margin */}
-      <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:p-12 rounded-xl shadow-2xl z-10 mt-6 md:mt-8 mx-4 border border-gray-700/50 transform transition-all">
+      <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl shadow-2xl z-10 mt-6 md:mt-8 mx-4 border border-gray-700/50 transform transition-all">
         <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
 
         {error && (
