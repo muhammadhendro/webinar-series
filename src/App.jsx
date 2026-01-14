@@ -182,9 +182,9 @@ function App() {
     <div className="w-full min-h-screen bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Fixed Pixel Height (900px) creates strong Full Screen feel without breaking in tall iframes */}
+      {/* Fixed Pixel Height (700px) is safer for iframes to minimize overflow while still big enough */}
       <div
-        className="w-full relative min-h-[600px] lg:min-h-[900px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-[600px] lg:min-h-[700px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}

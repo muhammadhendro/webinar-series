@@ -18,20 +18,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar for Webkit */
+/* Hide Scrollbar for Webkit (Chrome/Safari/Edge) to prevent "Double Scroll" in Iframe */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #20242F;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #3e4451;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #67C23A;
+/* Hide for Firefox */
+html {
+  scrollbar-width: none;
 }
