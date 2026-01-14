@@ -52,7 +52,7 @@ function App() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-xynexis-dark">
+      <div className="flex items-center justify-center p-8 bg-xynexis-dark min-h-[400px]">
         <div className="max-w-md w-full bg-[#2b303b] p-8 rounded-lg shadow-xl text-center border-t-4 border-xynexis-green">
           <svg className="w-16 h-16 text-xynexis-green mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -71,9 +71,11 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-xynexis-dark flex flex-col items-center pb-20">
+    // Changed min-h-screen to w-full to avoid double scrollbars in IFrame
+    <div className="w-full bg-xynexis-dark flex flex-col items-center pb-20 overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
+      {/* Added bg-cover, bg-center, and w-full to ensure full width coverage */}
       <div
         className="w-full relative min-h-[500px] flex items-center mb-12 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
@@ -103,7 +105,7 @@ function App() {
       </div>
 
       {/* Bottom Section: Form */}
-      <div className="max-w-2xl w-full bg-[#2b303b] p-8 md:p-12 rounded-xl shadow-2xl z-10 -mt-10 mx-4 border border-gray-700/50">
+      <div className="max-w-2xl w-full bg-[#2b303b] p-8 md:p-12 rounded-xl shadow-2xl z-10 -mt-20 mx-4 border border-gray-700/50">
         <h2 className="text-3xl font-semibold mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
 
         {error && (
@@ -178,7 +180,7 @@ function App() {
       </div>
 
       {/* Footer */}
-      <div className="mt-16 text-center text-gray-500 text-sm">
+      <div className="mt-16 text-center text-gray-500 text-sm pb-8">
         &copy; {new Date().getFullYear()} Xynexis. All rights reserved.
       </div>
     </div>
