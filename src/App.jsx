@@ -71,19 +71,19 @@ function App() {
   }
 
   return (
-    // Changed min-h-screen to w-full to avoid double scrollbars in IFrame
+    // w-full and overflow-x-hidden to prevent horizontal scrolling
     <div className="w-full bg-xynexis-dark flex flex-col items-center pb-20 overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Added bg-cover, bg-center, and w-full to ensure full width coverage */}
+      {/* w-full ensures it stretches across the entire IFrame width */}
       <div
-        className="w-full relative min-h-[500px] flex items-center mb-12 bg-cover bg-center bg-no-repeat"
+        className="w-full relative min-h-[500px] flex items-center bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability (Gradient from Left to transparent Right) */}
         <div className="absolute inset-0 bg-gradient-to-r from-xynexis-dark via-xynexis-dark/80 to-transparent"></div>
 
-        {/* Content Container */}
+        {/* Content Container - kept within max-width for readability, but background is full */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2">
           {/* Left: Text */}
           <div className="py-12">
@@ -105,7 +105,8 @@ function App() {
       </div>
 
       {/* Bottom Section: Form */}
-      <div className="max-w-2xl w-full bg-[#2b303b] p-8 md:p-12 rounded-xl shadow-2xl z-10 -mt-20 mx-4 border border-gray-700/50">
+      {/* Changed margin-top: removed negative margin, added positive space (mt-8) so it sits BELOW image */}
+      <div className="max-w-2xl w-full bg-[#2b303b] p-8 md:p-12 rounded-xl shadow-2xl z-10 mt-8 mx-4 border border-gray-700/50">
         <h2 className="text-3xl font-semibold mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
 
         {error && (
