@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { supabase } from './supabaseClient';
 import Input from './components/Input';
 
 function App() {
@@ -71,22 +70,18 @@ function App() {
     // Security: Validate before processing
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
-      // Set the first error as the main error message or handle field-specific errors
       setError(Object.values(validationErrors)[0]);
       return;
     }
 
     // Honeypot Field (Anti-Bot)
-    if (formData.website) {
-      // Silently fail if bot fills this hidden field
-      return;
-    }
+    if (formData.website) return;
 
-    // Rate Limiting (Simple Client-Side)
+    // Rate Limiting
     const lastSubmission = localStorage.getItem('last_submission');
     if (lastSubmission) {
       const timeSince = Date.now() - parseInt(lastSubmission, 10);
-      const COOLDOWN = 60000; // 60 seconds
+      const COOLDOWN = 60000;
       if (timeSince < COOLDOWN) {
         setError(`Please wait ${Math.ceil((COOLDOWN - timeSince) / 1000)} seconds before submitting again.`);
         return;
@@ -97,24 +92,29 @@ function App() {
     setError(null);
 
     try {
-      // Security: Sanitize inputs before sending to DB (trimming)
-      const sanitizedData = {
-        full_name: formData.fullName.trim(),
-        company_name: formData.companyName.trim(),
-        email: formData.email.trim().toLowerCase(),
-        phone_number: formData.phone ? formData.phone.trim() : null,
-        position: formData.position.trim()
-      };
+      // Send data to Serverless Function (Hides API Keys)
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          full_name: formData.fullName.trim(),
+          company_name: formData.companyName.trim(),
+          email: formData.email.trim().toLowerCase(),
+          phone_number: formData.phone ? formData.phone.trim() : null,
+          position: formData.position.trim()
+        }),
+      });
 
-      const { error } = await supabase
-        .from('speakers')
-        .insert([sanitizedData]);
+      const result = await response.json();
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error(result.message || 'Registration failed.');
+      }
 
-      // Set Rate Limit Timestamp
+      // Success
       localStorage.setItem('last_submission', Date.now().toString());
-
       setSubmitted(true);
     } catch (err) {
       setError(err.message || 'An unexpected error occurred.');
@@ -133,7 +133,7 @@ function App() {
           <h2 className="text-2xl font-bold mb-2">Registration Successful!</h2>
           <p className="text-gray-300">Thank you for registering as a speaker. We will contact you shortly.</p>
           <button
-            onClick={() => { setSubmitted(false); setFormData({ fullName: '', companyName: '', email: '', phone: '', position: '' }); }}
+            onClick={() => { setSubmitted(false); setFormData({ fullName: '', companyName: '', email: '', phone: '', position: '', website: '' }); }}
             className="mt-6 text-xynexis-green hover:text-white font-medium underline"
           >
             Register another person
@@ -178,8 +178,8 @@ function App() {
       </div>
 
       {/* Bottom Section: Form */}
-      {/* Responsive padding and margin */}
-      <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl shadow-2xl z-10 mt-6 md:mt-8 mx-4 transform transition-all">
+      {/* Responsive padding and margin. Removed border and shadow to fix 'white line' artifact. */}
+      <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl z-10 mt-6 md:mt-8 mx-4 transform transition-all">
         <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
 
         {error && (
