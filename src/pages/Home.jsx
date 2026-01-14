@@ -200,14 +200,14 @@ function Home() {
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2">
                     {/* Left: Text */}
                     <div className="py-8 md:py-12">
-                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
                             <span className="text-white">Become a </span>
                             <span className="text-xynexis-green">Speaker</span>
                         </h1>
-                        <p className="text-gray-300 text-base sm:text-lg mb-6 md:mb-8 max-w-xl">
+                        <p className="text-gray-300 text-base sm:text-lg mb-6 md:mb-8 max-w-xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             Join our webinar series and share your expertise in Post-Quantum Cryptography and Cyber Security.
                         </p>
-                        <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base">
+                        <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                             <div className="w-8 md:w-12 h-1 bg-xynexis-green rounded"></div>
                             <span>Xynexis Webinar Series</span>
                         </div>
