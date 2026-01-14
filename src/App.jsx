@@ -182,9 +182,9 @@ function App() {
     <div className="w-full min-h-screen bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Reduced Height to avoid double scroll: 500px on desktop */}
+      {/* Full Screen Height (min-h-screen) so it covers initial view. Scrolls away to reveal dark form. */}
       <div
-        className="w-full relative min-h-[350px] lg:min-h-[600px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-screen flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}
@@ -206,7 +206,7 @@ function App() {
               <span>Xynexis Webinar Series</span>
             </div>
           </div>
-          {/* Right: Empty to let image show */}
+          {/* Right: Empty */}
           <div></div>
         </div>
       </div>
