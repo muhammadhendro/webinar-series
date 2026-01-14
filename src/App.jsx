@@ -75,9 +75,9 @@ function App() {
     <div className="w-full bg-xynexis-dark flex flex-col items-center overflow-x-hidden">
 
       {/* Top Section: Hero / Info with Background Image */}
-      {/* Responsive Height: min-h-[350px] on mobile, 500px on desktop to be friendly with WP Navbar */}
+      {/* Full Screen Height: min-h-screen to fill viewport */}
       <div
-        className="w-full relative min-h-[350px] md:min-h-[500px] flex items-center bg-cover bg-center bg-no-repeat transition-all duration-300"
+        className="w-full relative min-h-screen flex items-center bg-cover bg-center bg-no-repeat transition-all duration-300"
         style={{ backgroundImage: "url('/speaker_illustration.png')" }}
       >
         {/* Dark Overlay for text readability */}
