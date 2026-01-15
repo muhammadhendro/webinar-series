@@ -10,11 +10,15 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
-    const { full_name, company_name, email, phone_number, position, token } = req.body;
+    const { full_name, company_name, email, phone_number, position, privacy_consent, marketing_consent, token } = req.body;
 
     // Basic Existence Validation
     if (!token || !email || !full_name || !company_name || !position) {
         return res.status(400).json({ message: 'Missing required fields or security token' });
+    }
+
+    if (privacy_consent !== true) {
+        return res.status(400).json({ message: 'You must agree to the Privacy Notice.' });
     }
 
     // Strict Input Validation (Regex Patterns)
@@ -59,7 +63,9 @@ export default async function handler(req, res) {
                     company_name: company_name.trim(),
                     email: email.trim().toLowerCase(),
                     phone_number: phone_number ? phone_number.trim() : null,
-                    position: position.trim()
+                    position: position.trim(),
+                    privacy_consent: !!privacy_consent,
+                    marketing_consent: !!marketing_consent
                 }
             ]);
 

@@ -28,7 +28,9 @@ function Home() {
         email: '',
         phone: '',
         position: '',
-        website: '' // Honeypot field
+        website: '', // Honeypot field
+        privacyConsent: false,
+        marketingConsent: false
     });
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -52,10 +54,10 @@ function Home() {
     }, []);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: type === 'checkbox' ? checked : value
         }));
     };
 
@@ -103,6 +105,11 @@ function Home() {
         // Phone Validation
         if (formData.phone && !phoneRegex.test(formData.phone)) {
             newErrors.phone = 'Invalid phone number format (e.g., +62812345678)';
+        }
+
+        // Privacy Consent Validation
+        if (!formData.privacyConsent) {
+            newErrors.privacyConsent = 'You must agree to the Privacy Notice to register.';
         }
 
         return newErrors;
@@ -154,6 +161,8 @@ function Home() {
                     email: formData.email.trim().toLowerCase(),
                     phone_number: formData.phone ? formData.phone.trim() : null,
                     position: formData.position.trim(),
+                    privacy_consent: formData.privacyConsent,
+                    marketing_consent: formData.marketingConsent,
                     token: csrfToken // Include One-Time Token
                 }),
             });
@@ -201,11 +210,11 @@ function Home() {
                     {/* Left: Text */}
                     <div className="py-8 md:py-12">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
-                            <span className="text-white">Become a </span>
-                            <span className="text-xynexis-green">Speaker</span>
+                            <span className="text-white block">PDP 2026: Siap Audit atau Berisiko Sanksi?</span>
+                            <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2">Roadmap Operasional Menuju Privacy Maturity</span>
                         </h1>
                         <p className="text-gray-300 text-base sm:text-lg mb-6 md:mb-8 max-w-xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            Join our webinar series and share your expertise in Post-Quantum Cryptography and Cyber Security.
+                            Webinar ini membahas bagaimana organisasi dapat melampaui sekadar kepatuhan formal menuju PDP yang matang dan siap audit, melalui pemanfaatan maturity assessment untuk mengidentifikasi gap kritis dan menyusun roadmap PDP yang operasional.
                         </p>
                         <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                             <div className="w-8 md:w-12 h-1 bg-xynexis-green rounded"></div>
@@ -278,6 +287,47 @@ function Home() {
                             onChange={handleChange}
                             placeholder="+62..."
                         />
+
+                        {/* Consent Checkboxes */}
+                        <div className="space-y-4">
+                            {/* Privacy Notice (Mandatory) */}
+                            <label className="flex items-start space-x-3 cursor-pointer group">
+                                <div className="relative flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        name="privacyConsent"
+                                        checked={formData.privacyConsent}
+                                        onChange={handleChange}
+                                        className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent transition-all checked:border-xynexis-green checked:bg-xynexis-green hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-xynexis-green focus:ring-offset-2 focus:ring-offset-[#2b303b]"
+                                    />
+                                    <svg className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity peer-checked:opacity-100" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 3L4.5 8.5L2 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </div>
+                                <span className="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors">
+                                    (Wajib) Saya menyetujui pemrosesan Data Pribadi saya untuk keperluan pendaftaran acara sesuai dengan Privacy Notice yang terlampir <a href="https://xynexis.com/privacy-notice/" target="_blank" rel="noopener noreferrer" className="text-xynexis-green hover:underline">Privacy Notice</a>
+                                </span>
+                            </label>
+
+                            {/* Marketing Consent (Optional) */}
+                            <label className="flex items-start space-x-3 cursor-pointer group">
+                                <div className="relative flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        name="marketingConsent"
+                                        checked={formData.marketingConsent}
+                                        onChange={handleChange}
+                                        className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent transition-all checked:border-xynexis-green checked:bg-xynexis-green hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-xynexis-green focus:ring-offset-2 focus:ring-offset-[#2b303b]"
+                                    />
+                                    <svg className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity peer-checked:opacity-100" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 3L4.5 8.5L2 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </div>
+                                <span className="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors">
+                                    (Opsional) Saya setuju menerima informasi dan penawaran pemasaran dari Xynexis.
+                                </span>
+                            </label>
+                        </div>
 
                         {/* Honeypot Field (Hidden from users, visible to bots) */}
                         <div className="hidden">
