@@ -41,7 +41,9 @@ function Dashboard() {
             'Company': s.company_name,
             'Position': s.position,
             'Email': s.email,
-            'Phone': s.phone_number || '-'
+            'Phone': s.phone_number || '-',
+            'Privacy Consent': s.privacy_consent ? 'Yes' : 'No',
+            'Marketing Consent': s.marketing_consent ? 'Yes' : 'No'
         })));
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, "Registrants");
@@ -105,12 +107,14 @@ function Dashboard() {
                                         <th className="px-6 py-4">Position</th>
                                         <th className="px-6 py-4">Email</th>
                                         <th className="px-6 py-4">Phone</th>
+                                        <th className="px-6 py-4">Privacy</th>
+                                        <th className="px-6 py-4">Marketing</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-700">
                                     {speakers.length === 0 ? (
                                         <tr>
-                                            <td colSpan="6" className="px-6 py-8 text-center text-gray-500">
+                                            <td colSpan="8" className="px-6 py-8 text-center text-gray-500">
                                                 No registrations yet.
                                             </td>
                                         </tr>
@@ -125,6 +129,18 @@ function Dashboard() {
                                                 <td className="px-6 py-4 text-gray-300">{speaker.position}</td>
                                                 <td className="px-6 py-4 text-gray-300">{speaker.email}</td>
                                                 <td className="px-6 py-4 text-gray-300">{speaker.phone_number || '-'}</td>
+                                                <td className="px-6 py-4">
+                                                    {speaker.privacy_consent ?
+                                                        <span className="text-green-400">Yes</span> :
+                                                        <span className="text-red-400">No</span>
+                                                    }
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    {speaker.marketing_consent ?
+                                                        <span className="text-green-400">Yes</span> :
+                                                        <span className="text-gray-500">No</span>
+                                                    }
+                                                </td>
                                             </tr>
                                         ))
                                     )}
