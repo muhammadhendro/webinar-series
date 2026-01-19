@@ -213,7 +213,7 @@ function Home() {
                             <span className="text-white block">PDP 2026: Siap Audit atau Berisiko Sanksi?</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2">Roadmap Operasional dan Checklist Wajib Pemimpin IT</span>
                         </h1>
-                        <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-xl animate-fade-in-up font-bold tracking-wide"
+                        <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-xl animate-fade-in-up font-bold tracking-wide text-justify"
                             style={{
                                 animationDelay: '0.2s',
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
