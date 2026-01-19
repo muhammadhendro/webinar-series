@@ -213,7 +213,7 @@ function Home() {
                             <span className="text-white block">PDP 2026: Siap Audit atau Berisiko Sanksi?</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2">Roadmap Operasional dan Checklist Wajib Pemimpin IT</span>
                         </h1>
-                        <p className="text-gray-300 text-base sm:text-lg mb-6 md:mb-8 max-w-xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                        <p className="text-gray-100 text-base sm:text-lg mb-6 md:mb-8 max-w-xl animate-fade-in-up bg-black/60 p-4 rounded-lg backdrop-blur-sm shadow-lg" style={{ animationDelay: '0.2s' }}>
                             Webinar ini membahas bagaimana organisasi dapat melampaui sekadar kepatuhan formal menuju PDP yang matang dan siap audit, melalui pemanfaatan maturity assessment untuk mengidentifikasi gap kritis dan menyusun roadmap PDP yang operasional.
                         </p>
                         <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
