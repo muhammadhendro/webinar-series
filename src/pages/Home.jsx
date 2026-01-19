@@ -305,7 +305,7 @@ function Home() {
                                     </svg>
                                 </div>
                                 <span className="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors">
-                                    (Wajib) Saya menyetujui pemrosesan Data Pribadi saya untuk keperluan pendaftaran acara sesuai dengan <a href="https://xynexis.com/privacy-notice/" target="_blank" rel="noopener noreferrer" className="text-xynexis-green hover:underline">Privacy Notice</a>
+                                    Saya menyetujui pemrosesan Data Pribadi saya untuk keperluan pendaftaran acara sesuai dengan <a href="https://xynexis.com/privacy-notice/" target="_blank" rel="noopener noreferrer" className="text-xynexis-green hover:underline">Privacy Notice</a>
                                 </span>
                             </label>
 
@@ -324,7 +324,7 @@ function Home() {
                                     </svg>
                                 </div>
                                 <span className="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors">
-                                    (Opsional) Saya setuju menerima informasi dan penawaran pemasaran dari Xynexis.
+                                    Saya setuju menerima informasi dan penawaran pemasaran dari Xynexis.
                                 </span>
                             </label>
                         </div>
