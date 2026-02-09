@@ -10,10 +10,10 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
-    const { full_name, company_name, email, phone_number, position, privacy_consent, marketing_consent, token } = req.body;
+    const { full_name, company_name, sector, email, phone_number, position, privacy_consent, marketing_consent, token } = req.body;
 
     // Basic Existence Validation
-    if (!token || !email || !full_name || !company_name || !position) {
+    if (!token || !email || !full_name || !company_name || !sector || !position) {
         return res.status(400).json({ message: 'Missing required fields or security token' });
     }
 
@@ -29,6 +29,7 @@ export default async function handler(req, res) {
 
     if (!nameRegex.test(full_name)) return res.status(400).json({ message: 'Invalid characters in Full Name' });
     if (!companyPosRegex.test(company_name)) return res.status(400).json({ message: 'Invalid characters in Company Name' });
+    if (!companyPosRegex.test(sector)) return res.status(400).json({ message: 'Invalid characters in Sector' });
     if (!companyPosRegex.test(position)) return res.status(400).json({ message: 'Invalid characters in Position' });
     if (!emailRegex.test(email)) return res.status(400).json({ message: 'Invalid Email format' });
     if (phone_number && !phoneRegex.test(phone_number)) return res.status(400).json({ message: 'Invalid Phone Number format' });
@@ -61,6 +62,7 @@ export default async function handler(req, res) {
                 {
                     full_name: full_name.trim(),
                     company_name: company_name.trim(),
+                    sector: sector.trim(),
                     email: email.trim().toLowerCase(),
                     phone_number: phone_number ? phone_number.trim() : null,
                     position: position.trim(),

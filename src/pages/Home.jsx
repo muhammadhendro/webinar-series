@@ -25,6 +25,7 @@ function Home() {
     const [formData, setFormData] = useState({
         fullName: '',
         companyName: '',
+        sector: '',
         email: '',
         phone: '',
         position: '',
@@ -86,6 +87,11 @@ function Home() {
             newErrors.companyName = 'Company name is too long';
         } else if (!companyPosRegex.test(formData.companyName)) {
             newErrors.companyName = 'Company name contains invalid characters';
+        }
+
+        // Sector Validation
+        if (!formData.sector) {
+            newErrors.sector = 'Sector is required';
         }
 
         // Position Validation
@@ -158,6 +164,7 @@ function Home() {
                 body: JSON.stringify({
                     full_name: formData.fullName.trim(),
                     company_name: formData.companyName.trim(),
+                    sector: formData.sector,
                     email: formData.email.trim().toLowerCase(),
                     phone_number: formData.phone ? formData.phone.trim() : null,
                     position: formData.position.trim(),
@@ -211,7 +218,7 @@ function Home() {
                     <div className="py-8 md:py-12">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
                             <span className="text-white block">"Building a Cybersecurity Strategy Roadmap yang Realistis dan Scalable"</span>
-                            <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2">Roadmap Operasional dan Checklist Wajib Pemimpin IT</span>
+                            <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
                         <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-xl animate-fade-in-up font-bold tracking-wide text-justify"
                             style={{
@@ -263,6 +270,35 @@ function Home() {
                             placeholder="Your organization"
                             required
                         />
+
+                        <div className="mb-4">
+                            <label className="block text-gray-300 text-sm font-medium mb-2" htmlFor="sector">
+                                Sector <span className="text-red-500">*</span>
+                            </label>
+                            <div className="relative">
+                                <select
+                                    id="sector"
+                                    name="sector"
+                                    value={formData.sector}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 bg-[#2b303b] border border-gray-600 rounded text-white appearance-none focus:outline-none focus:border-xynexis-green transition-colors duration-200"
+                                >
+                                    <option value="" disabled>Select your sector</option>
+                                    <option value="Banking">Banking</option>
+                                    <option value="Fintech">Fintech</option>
+                                    <option value="Insurance">Insurance</option>
+                                    <option value="Telecommunication">Telecommunication</option>
+                                    <option value="Goverment & BUMN">Goverment & BUMN</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
 
                         <Input
                             label="Position"
