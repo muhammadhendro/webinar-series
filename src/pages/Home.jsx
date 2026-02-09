@@ -217,7 +217,7 @@ function Home() {
                     {/* Left: Text */}
                     <div className="py-8 md:py-12">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
-                            <span className="text-white block">"Building a Cybersecurity Strategy Roadmap yang Realistis dan Scalable"</span>
+                            <span className="text-white block">Building a Realistic and Scalable Cybersecurity Strategy Roadmap</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
                         <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-xl animate-fade-in-up font-bold text-left"
@@ -225,7 +225,7 @@ function Home() {
                                 animationDelay: '0.2s',
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                             }}>
-                           Webinar ini membahas bagaimana organisasi dapat merancang cybersecurity strategy roadmap yang realistis dan scalable untuk menghadapi ancaman siber yang terus berkembang. Pelajari langkah strategis dalam mengidentifikasi risiko, menentukan prioritas keamanan, serta membangun sistem pertahanan yang adaptif dan berkelanjutan.
+                           Webinar ini akan membahas bagaimana organisasi dapat merancang Cybersecurity Strategy Roadmap yang realistis dan scalable untuk menghadapi ancaman siber yang terus berkembang. Pelajari langkah strategis dalam mengidentifikasi risiko, menentukan prioritas keamanan, serta membangun sistem pertahanan yang adaptif dan berkelanjutan.
                         </p>
                         <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                             <div className="w-8 md:w-12 h-1 bg-xynexis-green rounded"></div>
