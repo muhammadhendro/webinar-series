@@ -220,7 +220,7 @@ function Home() {
                             <span className="text-white block">"Building a Cybersecurity Strategy Roadmap yang Realistis dan Scalable"</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
-                        <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-xl animate-fade-in-up font-bold tracking-wide text-justify"
+                        <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-xl animate-fade-in-up font-bold text-left"
                             style={{
                                 animationDelay: '0.2s',
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
