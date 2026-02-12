@@ -39,6 +39,7 @@ function Dashboard() {
             'Date Registered': formatDate(s.created_at),
             'Full Name': s.full_name,
             'Company': s.company_name,
+            'Sector': s.sector,
             'Position': s.position,
             'Email': s.email,
             'Phone': s.phone_number || '-',
@@ -104,6 +105,7 @@ function Dashboard() {
                                         <th className="px-6 py-4">Date</th>
                                         <th className="px-6 py-4">Full Name</th>
                                         <th className="px-6 py-4">Company</th>
+                                        <th className="px-6 py-4">Sector</th>
                                         <th className="px-6 py-4">Position</th>
                                         <th className="px-6 py-4">Email</th>
                                         <th className="px-6 py-4">Phone</th>
@@ -126,6 +128,7 @@ function Dashboard() {
                                                 </td>
                                                 <td className="px-6 py-4 font-medium">{speaker.full_name}</td>
                                                 <td className="px-6 py-4 text-gray-300">{speaker.company_name}</td>
+                                                <td className="px-6 py-4 text-gray-300">{speaker.sector}</td>
                                                 <td className="px-6 py-4 text-gray-300">{speaker.position}</td>
                                                 <td className="px-6 py-4 text-gray-300">{speaker.email}</td>
                                                 <td className="px-6 py-4 text-gray-300">{speaker.phone_number || '-'}</td>
