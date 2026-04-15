@@ -217,7 +217,7 @@ function Home() {
                     {/* Left: Text */}
                     <div className="py-8 md:py-12">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
-                            <span className="text-white block">Axios Compromised: Membedah Supply Chain Attack pada Axios.</span>
+                            <span className="text-white block">Axios Compromised: Membedah Supply Chain Attack pada Axios</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
                         <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-2xl animate-fade-in-up font-bold"
@@ -227,7 +227,7 @@ function Home() {
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                             }}>
                            Webinar ini akan membahas bagaimana insiden kompromi Axios menjadi ancaman nyata bagi ekosistem digital Indonesia, di mana library yang digunakan secara luas dapat menjadi pintu masuk serangan tanpa disadari. Dengan skala penggunaan global dan keterkaitannya dengan banyak aplikasi modern, satu insiden dapat berdampak luas pada sistem dan operasional bisnis.
-Selain itu, webinar ini akan membahas langkah praktis dalam melakukan deteksi, dan containment. Tidak hanya dari sisi teknis, sesi ini juga akan mengupas implikasi bisnis dan regulasi, termasuk kewajiban dalam UU PDP, serta bagaimana organisasi dapat beralih dari pendekatan reaktif menjadi strategi keamanan yang lebih terstruktur melalui Managed Security Services (MSS) untuk perlindungan yang berkelanjutan.
+Selain itu, webinar ini akan membahas langkah praktis dalam melakukan deteksi, dan containment. Tidak hanya dari sisi teknis, sesi ini juga akan mengupas implikasi bisnis dan regulasi, serta bagaimana organisasi dapat beralih dari pendekatan reaktif menjadi strategi keamanan yang lebih terstruktur melalui Managed Security Services (MSS) untuk perlindungan yang berkelanjutan.
 
                         </p>
                         <div className="flex items-center space-x-4 text-gray-300 text-sm sm:text-base animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
