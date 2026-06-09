@@ -213,7 +213,7 @@ function Home() {
                 </div>
 
                 {/* Content Container */}
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr]">
+                <div className="relative z-10 max-w-7xl mx-auto px-4 pt-16 pb-8 sm:px-6 md:pt-20 md:pb-10 lg:px-8 lg:pt-24 w-full grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr]">
                     {/* Left: Text */}
                     <div className="py-8 md:py-12">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
