@@ -109,7 +109,9 @@ function Home() {
         }
 
         // Phone Validation
-        if (formData.phone && !phoneRegex.test(formData.phone)) {
+        if (!formData.phone.trim()) {
+            newErrors.phone = 'Phone Number is required';
+        } else if (!phoneRegex.test(formData.phone)) {
             newErrors.phone = 'Invalid phone number format (e.g., +62812345678)';
         }
 
@@ -166,7 +168,7 @@ function Home() {
                     company_name: formData.companyName.trim(),
                     sector: formData.sector,
                     email: formData.email.trim().toLowerCase(),
-                    phone_number: formData.phone ? formData.phone.trim() : null,
+                    phone_number: formData.phone.trim(),
                     position: formData.position.trim(),
                     privacy_consent: formData.privacyConsent,
                     marketing_consent: formData.marketingConsent,
@@ -326,12 +328,13 @@ Tidak hanya dari sisi keamanan, sesi ini juga akan membahas bagaimana pengelolaa
                         />
 
                         <Input
-                            label="Phone Number (Optional)"
+                            label="Phone Number"
                             type="tel"
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="+62..."
+                            required
                         />
 
                         {/* Consent Checkboxes */}

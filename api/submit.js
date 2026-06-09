@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const { full_name, company_name, sector, email, phone_number, position, privacy_consent, marketing_consent, token } = req.body;
 
     // Basic Existence Validation
-    if (!token || !email || !full_name || !company_name || !sector || !position) {
+    if (!token || !email || !full_name || !company_name || !sector || !position || !phone_number) {
         return res.status(400).json({ message: 'Missing required fields or security token' });
     }
 
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
     if (!companyPosRegex.test(sector)) return res.status(400).json({ message: 'Invalid characters in Sector' });
     if (!companyPosRegex.test(position)) return res.status(400).json({ message: 'Invalid characters in Position' });
     if (!emailRegex.test(email)) return res.status(400).json({ message: 'Invalid Email format' });
-    if (phone_number && !phoneRegex.test(phone_number)) return res.status(400).json({ message: 'Invalid Phone Number format' });
+    if (!phoneRegex.test(phone_number)) return res.status(400).json({ message: 'Invalid Phone Number format' });
 
     // Initialize Client
     if (!supabaseUrl || !supabaseKey) {
@@ -64,7 +64,7 @@ export default async function handler(req, res) {
                     company_name: company_name.trim(),
                     sector: sector.trim(),
                     email: email.trim().toLowerCase(),
-                    phone_number: phone_number ? phone_number.trim() : null,
+                    phone_number: phone_number.trim(),
                     position: position.trim(),
                     privacy_consent: !!privacy_consent,
                     marketing_consent: !!marketing_consent
