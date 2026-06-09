@@ -199,7 +199,7 @@ function Home() {
             {/* Top Section: Hero / Info with Background Image */}
             {/* Fixed Pixel Height (700px) is safer for iframes to minimize overflow while still big enough */}
             <div
-                className="w-full relative min-h-[600px] lg:min-h-[700px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
+                className="w-full relative min-h-[500px] lg:min-h-[560px] flex items-center bg-cover bg-right bg-no-repeat transition-all duration-300"
                 style={{ backgroundImage: "url('/speaker_illustration.png')" }}
             >
                 {/* Dark Overlay for text readability */}
@@ -213,9 +213,9 @@ function Home() {
                 </div>
 
                 {/* Content Container */}
-                <div className="relative z-10 max-w-7xl mx-auto px-4 pt-16 pb-8 sm:px-6 md:pt-20 md:pb-10 lg:px-8 lg:pt-24 w-full grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr]">
+                <div className="relative z-10 max-w-7xl mx-auto px-4 pt-14 pb-6 sm:px-6 md:pt-18 md:pb-8 lg:px-8 lg:pt-20 w-full grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr]">
                     {/* Left: Text */}
-                    <div className="py-8 md:py-12">
+                    <div className="py-4 md:py-6">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
                             <span className="text-white block">Human Risk: Ancaman Siber yang Paling Sering Terabaikan di Era Digital</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
@@ -245,7 +245,7 @@ Tidak hanya dari sisi keamanan, sesi ini juga akan membahas bagaimana pengelolaa
 
             {/* Bottom Section: Form */}
             {/* Responsive padding and margin. Removed border and shadow to fix 'white line' artifact. */}
-            <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-12 md:pb-6 rounded-xl z-10 mt-6 md:mt-8 mx-4 transform transition-all">
+            <div className="max-w-2xl w-full bg-[#2b303b] p-6 md:px-12 md:pt-10 md:pb-6 rounded-xl z-10 -mt-8 md:-mt-12 mx-4 transform transition-all">
                 <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 border-b border-gray-600 pb-4 text-center">Registration Form</h2>
 
                 {error && (
