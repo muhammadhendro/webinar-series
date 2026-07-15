@@ -219,7 +219,7 @@ function Home() {
                     {/* Left: Text */}
                     <div className="py-4 md:py-6">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
-                            <span className="text-white block">Human Risk: Ancaman Siber yang Paling Sering Terabaikan di Era Digital</span>
+                            <span className="text-white block">PCI DSS 4.0 Readiness Assessment: What's Changed and How to Prepare?</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
                         <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-2xl animate-fade-in-up font-bold"
@@ -228,10 +228,9 @@ function Home() {
                                 textAlign: 'justify',
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                             }}>
-                           Menurut berbagai laporan industri keamanan siber, sebagian besar insiden keamanan masih melibatkan faktor manusia. Kesalahan pengguna, phishing, social engineering, hingga penyalahgunaan akses sering menjadi titik masuk yang dimanfaatkan penyerang untuk mengakses sistem dan data organisasi.
-Meskipun banyak perusahaan telah menjalankan Security Awareness Program, tantangan yang dihadapi saat ini bukan hanya meningkatkan kesadaran keamanan, tetapi memastikan bahwa Human Risk dapat diukur, diprioritaskan, dan dikurangi secara efektif.
-Melalui webinar ini, PT Xynexis International akan membahas bagaimana organisasi dapat beralih dari pendekatan Security Awareness tradisional menuju Human Cyber Risk Management melalui HumanSec360. Pendekatan ini membantu organisasi mengidentifikasi, mengukur, dan mengurangi risiko yang berasal dari faktor manusia secara lebih terstruktur, terukur, dan selaras dengan kebutuhan bisnis serta regulasi.
-Tidak hanya dari sisi keamanan, sesi ini juga akan membahas bagaimana pengelolaan Human Risk yang efektif dapat meningkatkan ketahanan siber, mendukung kepatuhan, dan menjaga kepercayaan pelanggan di era digital.
+                           With all PCI DSS 4.0 requirements now fully in effect, organizations that process, store, or transmit payment card data must ensure their security controls comply with the latest standard. The introduction of new requirements, a risk-based approach, and enhanced security controls has made the transition to PCI DSS 4.0 a critical challenge that requires careful planning and preparation.
+In this webinar, PT Xynexis International will explore the key changes introduced in PCI DSS 4.0 compared to previous versions, their impact on organizations, and the essential steps to assess readiness and develop an effective implementation strategy. The session will also cover best practices for achieving compliance, reducing payment card data security risks, and strengthening organizational preparedness for PCI DSS 4.0 audits and certification.
+
 
 
                         </p>
