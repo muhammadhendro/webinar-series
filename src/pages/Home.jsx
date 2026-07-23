@@ -341,7 +341,7 @@ In this webinar, PT Xynexis International will explore the key changes introduce
                                     </svg>
                                 </div>
                                 <span className="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors">
-                                    I agree to the <a href="https://xynexis.com/privacy-notice/" target="_blank" rel="noopener noreferrer" className="text-xynexis-green hover:underline">Privacy Notice</a> and consent to having my data processed.
+                                    I have read and understood the <a href="https://xynexis.com/privacy-notice/" target="_blank" rel="noopener noreferrer" className="text-xynexis-green hover:underline">Privacy Notice</a> and consent to having my data processed.
                                 </span>
                             </label>
 
