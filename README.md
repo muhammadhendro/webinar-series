@@ -11,6 +11,8 @@ This is a **standalone React application** designed to be embedded into your Wor
 4.  Go to **Project Settings** -> **API**.
 5.  Copy the **Project URL** and **anon public key**.
 
+If your database was created from an older schema and you want the same email to be reusable, run `enable_repeat_email_registration.sql` once in the Supabase SQL Editor. Re-submitting the same email will then be stored as a new registration row instead of being rejected.
+
 ### 2. Configure Environment
 Create a file named `.env` (or `.env.local`) in this folder and add your keys:
 
@@ -62,3 +64,4 @@ Open `http://localhost:5173` to see the form.
 - **Responsive**: Works on mobile and desktop.
 - **Supabase**: Secure data storage.
 - **Validation**: Required fields and basic email checks.
+- **Repeat Email Support**: The same email can submit again and be stored as a new registration record.

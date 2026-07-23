@@ -22,8 +22,8 @@ export default async function handler(req, res) {
     }
 
     // Strict Input Validation (Regex Patterns)
-    const nameRegex = /^[a-zA-Z\s\.\-\']+$/;
-    const companyPosRegex = /^[a-zA-Z0-9\s\.\-\,\&\'\(\)]+$/;
+    const nameRegex = /^[a-zA-Z\s.'-]+$/;
+    const companyPosRegex = /^[a-zA-Z0-9\s.,&'()-]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[+]?[\d\s-]{10,15}$/;
 
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
             return res.status(403).json({ message: 'Invalid or expired security token. Please refresh the page.' });
         }
 
-        // 2. Insert Data (Sanitized by Parameterized Query)
+        // 2. Always create a new registration row, even if the email already exists.
         const { error } = await supabase
             .from('speakers')
             .insert([
@@ -72,8 +72,10 @@ export default async function handler(req, res) {
             ]);
 
         if (error) {
-            if (error.code === '23505') { // Unique violation
-                return res.status(409).json({ message: 'This email has already been registered.' });
+            if (error.code === '23505') {
+                return res.status(409).json({
+                    message: 'Database masih membatasi email unik. Jalankan file enable_repeat_email_registration.sql di Supabase agar email yang sama bisa tersimpan sebagai data baru.'
+                });
             }
             throw error;
         }

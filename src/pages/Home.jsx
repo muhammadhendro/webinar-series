@@ -47,7 +47,7 @@ function Home() {
                     const data = await res.json();
                     setCsrfToken(data.token);
                 }
-            } catch (e) {
+            } catch {
                 console.error("Failed to fetch security token");
             }
         };
@@ -66,8 +66,8 @@ function Home() {
         const newErrors = {};
 
         // Strict Input Patterns (Whitelisting safe characters)
-        const nameRegex = /^[a-zA-Z\s\.\-\']+$/; // Letters, spaces, dots, dashes, apostrophes
-        const companyPosRegex = /^[a-zA-Z0-9\s\.\-\,\&\'\(\)]+$/; // Alphanumeric + safe punctuation
+        const nameRegex = /^[a-zA-Z\s.'-]+$/; // Letters, spaces, dots, dashes, apostrophes
+        const companyPosRegex = /^[a-zA-Z0-9\s.,&'()-]+$/; // Alphanumeric + safe punctuation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const phoneRegex = /^[+]?[\d\s-]{10,15}$/;
 
@@ -142,17 +142,6 @@ function Home() {
             return;
         }
 
-        // Rate Limiting
-        const lastSubmission = localStorage.getItem('last_submission');
-        if (lastSubmission) {
-            const timeSince = Date.now() - parseInt(lastSubmission, 10);
-            const COOLDOWN = 60000;
-            if (timeSince < COOLDOWN) {
-                setError(`Please wait ${Math.ceil((COOLDOWN - timeSince) / 1000)} seconds before submitting again.`);
-                return;
-            }
-        }
-
         setLoading(true);
         setError(null);
 
@@ -183,7 +172,6 @@ function Home() {
             }
 
             // Success
-            localStorage.setItem('last_submission', Date.now().toString());
             setSubmitted(true);
         } catch (err) {
             setError(err.message || 'An unexpected error occurred.');
