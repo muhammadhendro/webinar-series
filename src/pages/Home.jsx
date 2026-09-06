@@ -207,7 +207,7 @@ function Home() {
                     {/* Left: Text */}
                     <div className="py-4 md:py-6">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
-                            <span className="text-white block">ISO 27001:2022 & Framework Compliance: Building an Effective and Measurable ISMS</span>
+                            <span className="text-white block">IT Governance Maturity: The COBIT 2019 Framework for Measurable Digital Transformation</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
                         <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-2xl animate-fade-in-up font-bold"
@@ -216,8 +216,9 @@ function Home() {
                                 textAlign: 'justify',
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                             }}>
-                           As organization face increasing information security risks and compliance requirements, having an Information Security Management System (ISMS) that meet standards is no longer. Organization need to ensure that their ISMS is effectively implemented, measurable, risk based, and aligned with business needs.
-In this webinar, PT Xynexis International will explore the key aspects of ISO27001:2022 implementation, including how organizations can establish an effective ISMS, align information security controls with applicable compliance frameworks, and measure the effectiveness of their security controls. The session will also cover practical approaches to risk-based ISMS implementation and continuous improvement to strengthen organizational information security governance and compliance readiness.
+                           As organizations accelerate their digital transformation initiatives, maintaining effective IT governance and alignment between IT capabilities and business strategy becomes critical. Organizations need to ensure that their IT governance framework is structured, measurable, value-driven, and aligned with organizational objectives.
+In this webinar, Xynexis International will explore the key aspects of COBIT 2019 framework implementation, including how organizations can evaluate and elevate their IT governance maturity, design tailored governance systems, and measure the impact of digital transformation. The session will also cover practical approaches to process capability assessment and continuous governance improvement to optimize value creation and manage IT-related risks effectively.
+
 
 
 
