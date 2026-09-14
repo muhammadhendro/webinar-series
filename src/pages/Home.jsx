@@ -207,7 +207,7 @@ function Home() {
                     {/* Left: Text */}
                     <div className="py-4 md:py-6">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
-                            <span className="text-white block">IT Governance Maturity: The COBIT 2019 Framework for Measurable Digital Transformation</span>
+                            <span className="text-white block">GRC Unplugged: Smart Assessment, Fast GRC Implementation with Agentic AI</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
                         <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-2xl animate-fade-in-up font-bold"
@@ -216,8 +216,8 @@ function Home() {
                                 textAlign: 'justify',
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                             }}>
-                           As organizations accelerate their digital transformation initiatives, maintaining effective IT governance and alignment between IT capabilities and business strategy becomes critical. Organizations need to ensure that their IT governance framework is structured, measurable, value-driven, and aligned with organizational objectives.
-In this webinar, Xynexis International will explore the key aspects of COBIT 2019 framework implementation, including how organizations can evaluate and elevate their IT governance maturity, design tailored governance systems, and measure the impact of digital transformation. The session will also cover practical approaches to process capability assessment and continuous governance improvement to optimize value creation and manage IT-related risks effectively.
+                           As organizations face increasingly complex regulatory requirements, business risks, and governance challenges, having an effective and measurable GRC framework is more important than ever. Organizations need to assess their current governance maturity efficiently, identify gaps accurately, and implement the right GRC practices without creating unnecessary complexity.
+In this webinar, Xynexis International will explore how Agentic AI can support smarter and more efficient GRC assessments and implementation. The session will discuss how AI agents can assist in assessing governance processes, identifying gaps, mapping requirements, and accelerating GRC implementation. Participants will also gain insights into practical approaches to combining GRC frameworks with Agentic AI to improve assessment accuracy, streamline implementation, strengthen risk management, and support continuous governance improvement.
 
 
 
