@@ -207,7 +207,7 @@ function Home() {
                     {/* Left: Text */}
                     <div className="py-4 md:py-6">
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight animate-fade-in-up">
-                            <span className="text-white block">GRC Unplugged: Smart Assessment, Fast GRC Implementation with Agentic AI</span>
+                            <span className="text-white block">AI-Driven Threats, Stronger Governance: Securing Critical Infrastructure in the Financial Ecosystem</span>
                             <span className="text-xynexis-green block text-2xl sm:text-3xl lg:text-4xl mt-2"></span>
                         </h1>
                         <p className="text-white text-sm sm:text-base mb-6 md:mb-8 max-w-2xl animate-fade-in-up font-bold"
@@ -216,8 +216,10 @@ function Home() {
                                 textAlign: 'justify',
                                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                             }}>
-                           As organizations face increasingly complex regulatory requirements, business risks, and governance challenges, having an effective and measurable GRC framework is more important than ever. Organizations need to assess their current governance maturity efficiently, identify gaps accurately, and implement the right GRC practices without creating unnecessary complexity.
-In this webinar, Xynexis International will explore how Agentic AI can support smarter and more efficient GRC assessments and implementation. The session will discuss how AI agents can assist in assessing governance processes, identifying gaps, mapping requirements, and accelerating GRC implementation. Participants will also gain insights into practical approaches to combining GRC frameworks with Agentic AI to improve assessment accuracy, streamline implementation, strengthen risk management, and support continuous governance improvement.
+                           As artificial intelligence continues to transform the financial ecosystem, organizations face increasingly sophisticated cyber threats targeting critical infrastructure, sensitive data, and essential digital services.
+Financial institutions must strengthen their cybersecurity and governance strategies to address emerging AI-driven threats while ensuring operational resilience, regulatory compliance, and effective risk management.
+In this webinar, Xynexis International will explore the evolving cybersecurity landscape, the impact of AI-driven threats on financial institutions, and the importance of strengthening governance frameworks to protect critical infrastructure. Participants will gain insights into practical strategies for managing emerging cyber risks, improving security governance, and building a more resilient financial ecosystem.
+
 
 
 
